@@ -2,7 +2,7 @@
 
 A Breaking Bad–themed memory card game. Click characters to score — never click the same one twice. Cards reshuffle after every pick. Three difficulty levels, with sound effects and background music.
 
-[Play it live](https://w3nc.github.io/memory-card/)
+[Play it live](https://memory-card-w3nc.vercel.app/)
 
 ![preview](preview.png)
 
