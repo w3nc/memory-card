@@ -16,3 +16,9 @@ A Breaking Bad–themed memory card game. Click characters to score — never cl
 ## Tech
 
 React + Vite. LocalStorage keeps your best score per level.
+
+## Credits
+
+- Background: [Matt Frith – Jesse: We Need to Pixel Some Sort of Breaking](https://www.mattfrith.com/post/54140644506/jesse-we-need-to-pixel-some-sort-of-breaking)
+- Character photos: [Pinterest](https://www.pinterest.com/)
+- Sound effects: [Pixabay](https://pixabay.com/)
