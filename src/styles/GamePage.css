@@ -1,0 +1,24 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 24px 12px 110px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px;
+}
+.progress {
+  font-size: 1.6rem;
+  margin: 0;
+  text-shadow: 0 2px 6px #000;
+}
+
+@media (max-width: 700px) {
+  .cards {
+    gap: 12px;
+  }
+}

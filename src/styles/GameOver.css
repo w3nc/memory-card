@@ -1,0 +1,65 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #000a;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-content: center;
+  z-index: 10;
+  padding: 16px;
+  animation: fade 0.3s ease both;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+.panel {
+  background: var(--panel);
+  border: 3px solid var(--pale-green);
+  border-radius: 16px;
+  padding: 20px 22px 26px;
+  text-align: center;
+  max-width: min(92vw, 520px);
+  box-shadow: 0 0 34px var(--accent-glow);
+  animation: pop 0.5s var(--ease) both;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+  }
+}
+.panel.win {
+  border-color: var(--pale-green);
+  box-shadow: 0 0 34px rgb(3 110 42 / 0.6);
+}
+.panel.lose {
+  border-color: var(--lose);
+  box-shadow: 0 0 34px rgb(172 32 22 / 0.6);
+}
+.panel-gif {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+.panel h2 {
+  margin: 0 0 18px;
+  font-weight: normal;
+}
+.panel-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .panel {
+    animation: none !important;
+  }
+}

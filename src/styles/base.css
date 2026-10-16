@@ -1,0 +1,130 @@
+:root {
+  --ink: #fff;
+  --night: #14100e;
+  --panel: rgb(26 17 12 / 0.94);
+  --wood: #bc644e; /* canyon rock in the background */
+  --wood-dark: #9a4836;
+  --paper-ink: #fff;
+  --accent: #d35617; /* the RV's orange stripe */
+  --accent-glow: rgb(211 86 23 / 0.55);
+  --sky: #b9dbe4; /* background sky */
+  --sand: #c8bc98;
+  --lose: #ac2016; /* the RV's red stripe */
+  --pale-green: #036e2a; /* Breaking Bad logo green */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --flip: 0.42s;
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%; /* stop iOS inflating text after rotation */
+  text-size-adjust: 100%;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+body {
+  font-family: "Potta One", "Trebuchet MS", system-ui, sans-serif;
+  color: var(--ink);
+  background-color: #000;
+}
+
+/* campfire background + soft vignette */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: url("../assets/rv-bg.gif") center bottom / cover no-repeat;
+  image-rendering: -moz-crisp-edges; /* older Firefox */
+  image-rendering: pixelated;
+  /* own compositor layer: the animated GIF repaints alone instead of the whole page */
+  transform: translateZ(0);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(20 8 0 / 0.28) 0%,
+    rgb(12 5 0 / 0.72) 100%
+  );
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  touch-action: manipulation; /* no 300ms tap delay / double-tap zoom on phones */
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 3px;
+}
+
+/* ---------- shared ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+.btn {
+  border: 0;
+  background: var(--pale-green);
+  color: #ffffff;
+  -webkit-text-stroke: 16px black;
+  paint-order: stroke fill;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 28px;
+  box-shadow:
+    0 5px 10px #000,
+    0 -5px 10px #000;
+  transition:
+    transform 0.28s var(--ease),
+    box-shadow 0.28s var(--ease);
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+      0 8px 16px #000,
+      0 0 22px var(--accent-glow);
+  }
+}
+.btn:active {
+  transform: scale(0.94);
+  transition-duration: 0.1s;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--accent);
+}
+
+/* Browsers that can't paint the stroke behind the fill would show a fat black blob
+   instead of readable text, so they get a plain outline-style shadow instead. */
+@supports not (paint-order: stroke fill) {
+  .btn,
+  .back-btn,
+  .score,
+  .round {
+    -webkit-text-stroke: 0;
+    text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000,
+      0 2px 4px #000;
+  }
+}

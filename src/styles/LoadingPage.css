@@ -1,0 +1,71 @@
+.loading {
+  min-height: 100vh;
+  min-height: 100dvh; /* excludes mobile browser toolbars */
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 18px;
+}
+.loading p {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-shadow: 0 2px 6px #000;
+}
+.plate-wrap {
+  width: clamp(200px, 32vw, 380px);
+  animation:
+    plate-in 0.7s var(--ease) both,
+    plate-glow 1.8s ease-in-out infinite alternate;
+}
+.loading-logo {
+  display: block;
+  width: 100%;
+  /* spin around the plate's centre, not the image's */
+  transform-origin: 50.5% 48%;
+  animation: plate-spin 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes plate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+@keyframes plate-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes plate-glow {
+  from {
+    filter: drop-shadow(0 0 6px rgb(237 190 12 / 0.25));
+  }
+  to {
+    filter: drop-shadow(0 0 26px rgb(237 190 12 / 0.75));
+  }
+}
+.load-bar {
+  width: clamp(160px, 22vw, 260px);
+  height: 6px;
+  border-radius: 99px;
+  background: rgb(0 0 0 / 0.55);
+  overflow: hidden;
+}
+.load-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), #edbe0c);
+  transform-origin: left;
+  animation: load-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes load-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* No reduced-motion override: the plate and bar are the loading indicator, so they always animate. */
